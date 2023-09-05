@@ -1,0 +1,43 @@
+<div class="block is-flex">
+    <div class="field has-addons">
+        <h2 class="title is-2">{{ collection.name }}</h2>
+    </div>
+    <div class="is-right">
+        <form method="POST">
+            {% csrf_token %}
+            {% if collection.slug != '_defaut' %}
+            <button hx-post="{% url 'delete-collection' %}"
+                    hx-vals='js:{"collection": getCollectionFromUrl()}'
+                    class="button is-danger is-medium is-inverted">Supprimer
+            </button>
+            {% endif %}
+        </form>
+    </div>
+</div>
+<div class="block">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="field has-addons">
+            <div class="control">
+                <input class="input" name="task-description" id="task-description" type="text"
+                       placeholder="Nom de la tâche">
+            </div>
+            <div class="control">
+                <button hx-post="{% url 'add-task' %}"
+                        hx-vals='js:{"collection": getCollectionFromUrl()}'
+                        hx-trigger="click"
+                        hx-target="#tasks"
+                        hx-swap="beforeend"
+                        hx-on::after-request="document.getElementById('task-description').value = ''"
+                        class="button is-primary is-light"
+                        type="submit">Ajouter
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="block">
+    <div class="tags are-medium" id="tasks">
+        {% include 'todo/tasks.html' with tasks=tasks %}
+    </div>
+</div>

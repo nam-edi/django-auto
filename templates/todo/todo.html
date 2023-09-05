@@ -1,0 +1,46 @@
+{% extends "common/base.html" %}
+
+<section class="hero is-small is-link mb-4">
+    <div class="hero-body">
+        <h1 class="title is-1">Todo</h1>
+        <p class="subtitle is-4">
+            Application de todo list
+        </p>
+    </div>
+</section>
+
+<div class="container">
+    {% block content %}
+
+    <div class="columns">
+        <div class="column is-one-quarter">
+            <aside class="menu" id="collections">
+                {% include 'todo/collections.html' with collections=collections %}
+            </aside>
+        </div>
+        <div class="column" id="collection-detail">
+            {% include 'todo/collection_detail.html' with collection=collection %}
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+        document.body.addEventListener("htmx:responseError", function(evt) {
+            alert(evt.detail.xhr.responseText);
+        })
+
+        function getCollectionFromUrl() {
+            let url = new URL(window.location.href);
+            let searchParams = url.searchParams;
+            let collection = searchParams.get("collection");
+            return collection ? collection : '_defaut';
+        }
+
+
+
+
+
+</script>
+{% endblock content %}

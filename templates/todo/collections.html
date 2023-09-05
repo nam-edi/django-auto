@@ -1,0 +1,24 @@
+<form method="POST">
+    {% csrf_token %}
+    <div class="field has-addons">
+        <div class="control">
+            <input class="input" name="collection-name" id="collection-name" type="text"
+                   placeholder="Nom de la collection">
+        </div>
+        <div class="control">
+            <button hx-post="{% url 'add-collection' %}"
+                    hx-trigger="click"
+                    hx-target="#collections"
+                    hx-swap="beforeend"
+                    hx-on::after-request="document.getElementById('collection-name').value = ''"
+                    class="button is-primary is-light"
+                    type="submit">Ajouter
+            </button>
+        </div>
+    </div>
+</form>
+{% for collection in collections %}
+<p class="menu-label">
+    {% include 'todo/collection.html' with collection=collection %}
+</p>
+{% endfor %}

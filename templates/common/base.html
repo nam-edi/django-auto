@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Auto</title>
+        <!-- Include the Bulma CSS framework for styling -->
+        <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+    </head>
+    <body>
+    {% include "common/navbar.html" %}
+        <section class="hero is-small is-link mb-4">
+            <div class="hero-body">
+                <h1 class="title is-1">Todo</h1>
+                <p class="subtitle is-4">
+                    Application de todo list
+                </p>
+            </div>
+        </section>
+
+        <div class="container">
+
+                {% block content %}
+
+                {% endblock content %}
+
+        </div>
+    </body>
+</html>

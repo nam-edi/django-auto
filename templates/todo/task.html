@@ -1,0 +1,10 @@
+<span class="tag is-success">{{ task.description }}
+    <form methode="POST">
+    {% csrf_token %}
+        <button hx-get="{% url 'delete-task' task_pk=task.pk %}"
+                hx-target="closest span"
+                hx-swap="outerHTML"
+                class="delete">
+        </button>
+    </form>
+</span>

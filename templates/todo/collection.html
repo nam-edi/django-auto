@@ -1,0 +1,6 @@
+<button
+        hx-get="{% url 'get-collection-detail' collection_pk=collection.pk %}"
+        hx-target="#collection-detail"
+        hx-push-url="?collection={{ collection.slug }}"
+        class="button is-link is-light">{{ collection.name }}
+</button>

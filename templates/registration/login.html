@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto</title>
+    <!-- Include the Bulma CSS framework for styling -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+<div class="hero is-fullheight">
+    <div class="hero-body is-justify-content-center is-align-items-center">
+        <div class="columns is-flex is-flex-direction-column box">
+            <form method="post">
+                {% csrf_token %}
+                <div class="column">
+                    <label for="{{ form.username.id_for_label }}">Identifiant</label>
+                    <input class="input is-primary" name="{{ form.username.name }}" type="text"
+                           id="{{ form.username.id_for_label }}" placeholder="Identifiant">
+                </div>
+                <div class="column">
+                    <label for="{{ form.password.id_for_label }}">Password</label>
+                    <input class="input is-primary" name="{{ form.password.name }}" type="password"
+                           id="{{ form.password.id_for_label }}" placeholder="Password">
+                    <a href="forget.html" class="is-size-7 has-text-primary">mot de passe oublié?</a>
+                </div>
+                <div class="column">
+                    <button class="button is-primary is-fullwidth" type="submit">Login</button>
+                </div>
+                <div class="has-text-centered">
+                    <p class="is-size-7"> Pas encore de compte? <a href="#" class="has-text-primary">Sign up</a>
+                    </p>
+                    {% if form.errors %}
+                    <div class="has-text-danger">
+                        <p>Veuillez vérifier vos informations de connexion.</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
